@@ -25,6 +25,7 @@ final public class PlanetsRequest: BatchRequest {
 	public func fetch(start: Date, end: Date, interval: TimeInterval = 60.0) async -> [EphemerisItem] {
 		var coordinates = [EphemerisItem]()
 		var dates = dates(for: start, end: end, interval: interval)
+		let body = self.body
 		let stream = AsyncStream<[EphemerisItem]> {
 			guard !dates.isEmpty else { return nil }
 			do {
@@ -33,7 +34,7 @@ final public class PlanetsRequest: BatchRequest {
 				return nil
 			}
 			let batch = dates.removeFirst()
-			return batch.map { EphemerisItem(body: self.body, date: $0) }
+			return batch.map { EphemerisItem(body: body, date: $0) }
 		}
 		for await items in stream {
 			coordinates.append(contentsOf: items)

@@ -7,4 +7,4 @@
 
 import Foundation
 
-extension Date: Strideable {}
+extension Date: @retroactive Strideable {}

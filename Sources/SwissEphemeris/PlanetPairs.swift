@@ -11,7 +11,7 @@ import Foundation
 public struct PlanetPairs {
     
     /// Holds all possible pairs of planets.
-    public private (set) var pairs = [Pair<Planet, Planet>]()
+    public private(set) var pairs = [Pair<Planet, Planet>]()
     
     /// Creates an instance of `PlanetPairs`.
     public init() {
